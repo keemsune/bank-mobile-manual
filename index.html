@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="리걸프렌즈 매뉴얼 페이지">
+    <title>Manual - 리걸프렌즈</title>
+    
+    <!-- Google Fonts - Noto Sans KR -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- 모바일 사이드 메뉴 오버레이 -->
+    <div class="mobile-menu-overlay"></div>
+    
+    <!-- 모바일 사이드 메뉴 -->
+    <aside class="mobile-sidebar">
+        <div class="mobile-sidebar-header">
+            <img src="images/logo-w.svg" alt="Legal Friends" class="sidebar-logo">
+            <button class="close-button">
+                <i data-lucide="x"></i>
+            </button>
+        </div>
+        <nav class="mobile-sidebar-menu">
+            <a href="#" class="mobile-menu-item active" data-section="install">설치하기</a>
+            <a href="#" class="mobile-menu-item" data-section="app-started">시작하기</a>
+            <a href="#" class="mobile-menu-item" data-section="using">이용하기</a>
+            
+            <!-- 메뉴 안내 - 하위메뉴 -->
+            <div class="mobile-menu-item-wrapper">
+                <a href="#" class="mobile-menu-item has-submenu" data-section="menu-guide">
+                    <span>메뉴 안내</span>
+                    <i data-lucide="chevron-right" class="mobile-icon-right"></i>
+                    <i data-lucide="chevron-down" class="mobile-icon-down" style="display:none;"></i>
+                </a>
+                <div class="mobile-submenu">
+                    <a href="#" class="mobile-submenu-item" data-section="home">홈</a>
+                    <a href="#" class="mobile-submenu-item" data-section="report">상담결과 리포트</a>
+                    <a href="#" class="mobile-submenu-item" data-section="contract">계약서</a>
+                    <a href="#" class="mobile-submenu-item" data-section="document">신청서류</a>
+                    <a href="#" class="mobile-submenu-item" data-section="debt">부채증명서</a>
+                    <a href="#" class="mobile-submenu-item" data-section="petition">신청서</a>
+                    <a href="#" class="mobile-submenu-item" data-section="supplement">보정서</a>
+                    <a href="#" class="mobile-submenu-item" data-section="progress">사건진행현황</a>
+                    <a href="#" class="mobile-submenu-item" data-section="fee">수임료</a>
+                    <a href="#" class="mobile-submenu-item" data-section="calendar">캘린더</a>
+                    <a href="#" class="mobile-submenu-item" data-section="office-info">사무소 정보</a>
+                </div>
+            </div>
+        </nav>
+    </aside>
+    
+    <div class="page-wrapper">
+        <!-- 모바일/태블릿 헤더 (768px 이하만 표시) -->
+        <header class="mobile-header">
+            <button class="menu-button">
+                <i data-lucide="menu"></i>
+            </button>
+            <h1>회생파산 앱 이용안내</h1>
+            <div class="header-spacer"></div>
+        </header>
+        
+        <!-- 데스크탑 헤더 (769px 이상만 표시) -->
+        <header class="header">
+            <h1>회생파산 앱 이용안내</h1>
+        </header>
+        
+        <!-- 메인 레이아웃 (사이드바 + 컨텐츠) -->
+        <div class="main-layout">
+            <!-- 좌측 사이드메뉴 (태블릿 라지/데스크탑만 표시) -->
+            <aside class="sidebar">
+                <nav class="sidebar-menu">
+                    <a href="#" class="menu-item active" data-section="install">
+                        <span>설치하기</span>
+                        <i data-lucide="chevron-right"></i>
+                    </a>
+                    <a href="#" class="menu-item" data-section="app-started">
+                        <span>시작하기</span>
+                        <i data-lucide="chevron-right"></i>
+                    </a>
+                    <a href="#" class="menu-item" data-section="using">
+                        <span>이용하기</span>
+                        <i data-lucide="chevron-right"></i>
+                    </a>
+                    
+                    <!-- 메뉴 안내 - 하위메뉴 있음 -->
+                    <div class="menu-item-wrapper">
+                        <a href="#" class="menu-item has-submenu" data-section="menu-guide">
+                            <span>메뉴 안내</span>
+                            <i data-lucide="chevron-right" class="icon-right"></i>
+                            <i data-lucide="chevron-down" class="icon-down" style="display:none;"></i>
+                        </a>
+                        <div class="submenu">
+                            <a href="#" class="submenu-item" data-section="home">홈</a>
+                            <a href="#" class="submenu-item" data-section="report">상담결과 리포트</a>
+                            <a href="#" class="submenu-item" data-section="contract">계약서</a>
+                            <a href="#" class="submenu-item" data-section="document">신청서류</a>
+                            <a href="#" class="submenu-item" data-section="debt">부채증명서</a>
+                            <a href="#" class="submenu-item" data-section="petition">신청서</a>
+                            <a href="#" class="submenu-item" data-section="supplement">보정서</a>
+                            <a href="#" class="submenu-item" data-section="progress">사건진행현황</a>
+                            <a href="#" class="submenu-item" data-section="fee">수임료</a>
+                            <a href="#" class="submenu-item" data-section="calendar">캘린더</a>
+                            <a href="#" class="submenu-item" data-section="office-info">사무소 정보</a>
+                        </div>
+                    </div>
+                </nav>
+            </aside>
+            
+            <!-- 우측 컨텐츠 영역 (데스크탑에서만 박스) -->
+            <div class="content-wrapper">
+                <!-- 설치하기 섹션 -->
+                <section class="content-section" data-section="install">
+                    <!-- 타이틀 -->
+                    <div class="content-title">
+                        <h2 class="title">설치하기</h2>
+                        <p class="description" style="display: none;">앱 설치 방법을 안내합니다.</p>
+                    </div>
+                    
+                    <!-- 내용 -->
+                    <div class="content-body">
+                        <!-- 방법 1 -->
+                        <div class="install-method">
+                            <div class="method-text">
+                                <h3 class="method-title">방법<span class="step-number">1</span></h3>
+                                <p class="method-description">문자 링크를 통해 어플 다운로드</p>
+                            </div>
+                            <div class="method-image">
+                                <img src="images/01-install/link.png" alt="문자 링크를 통한 설치">
+                            </div>
+                        </div>
+                        
+                        <!-- 방법 2 -->
+                        <div class="install-method">
+                            <div class="method-text">
+                                <h3 class="method-title">방법<span class="step-number">2</span></h3>
+                                <p class="method-description">구글 PLAY 스토어 또는 앱스토어에서 "리걸프렌즈" 검색>다운로드</p>
+                            </div>
+                            <div class="method-images">
+                                <img src="images/01-install/playstore.png" alt="플레이스토어에서 설치">
+                                <img src="images/01-install/appstore.png" alt="앱스토어에서 설치">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- 시작하기 섹션 -->
+                <section class="content-section" data-section="app-started" style="display: none;">
+                    <!-- 타이틀 -->
+                    <div class="content-title">
+                        <h2 class="title">시작하기</h2>
+                        <p class="description" style="display: none;">앱 시작 방법을 안내합니다.</p>
+                    </div>
+                    
+                    <!-- 내용 -->
+                    <div class="content-body">
+                        <div class="install-method vertical-layout">
+                            <div class="method-text">
+                                <h3 class="method-title"><span class="step-number">1</span>핸드폰번호 인증 및 시작하기</h3>
+                                <p class="method-description">‘시작하기' 선택 후 나의 핸드폰 번호로 인증을 진행합니다.</p>
+                            </div>
+                            <div class="method-image">
+                                <img src="images/02-app-started/verification.png" alt="핸드폰번호 인증">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- 이용하기 섹션 -->
+                <section class="content-section" data-section="using" style="display: none;">
+                    <!-- 타이틀 -->
+                    <div class="content-title">
+                        <h2 class="title">이용하기</h2>
+                        <p class="description" style="display: none;">앱 이용 방법을 안내합니다.</p>
+                    </div>
+                    
+                    <!-- 내용 -->
+                    <div class="content-body">
+                        <div class="install-method vertical-layout">
+                            <div class="method-text">
+                                <h3 class="method-title"><span class="step-number">1</span>메인화면</h3>
+                                <p class="method-description">하단박스에서 최근 상담 로펌 또는 사무소에 대한 정보를 알 수 있습니다. 우측 상단 버튼을 눌러 마이페이지로 이동 가능합니다.</p>
+                            </div>
+                            <div class="method-image small-image">
+                                <img src="images/03-using/main.png" alt="메인화면">
+                            </div>
+                        </div>
+                        
+                        <div class="install-method vertical-layout">
+                            <div class="method-text">
+                                <h3 class="method-title"><span class="step-number">2</span>마이페이지</h3>
+                                <p class="method-description">상담 또는 진행 중인 사건을 사무소별로 모두 확인할 수 있습니다. 등록된 사건을 누르면 진행중인 사건의 홈화면으로 이동합니다.</p>
+                            </div>
+                            <div class="method-image">
+                                <img src="images/03-using/my-page-case.png" alt="마이페이지">
+                            </div>
+                        </div>
+                        
+                        <div class="install-method vertical-layout">
+                            <div class="method-text">
+                                <h3 class="method-title"><span class="step-number">3</span>설정</h3>
+                                <p class="method-description">어플리케이션 알림 설정, 버전 업그레이드, 로그아웃, 회원탈퇴 기능이 있습니다.</p>
+                            </div>
+                            <div class="method-image">
+                                <img src="images/03-using/my-page-setting.png" alt="설정화면">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- 메뉴 안내 - 홈 -->
+                <section class="content-section" data-section="home" style="display: none;">
+                    <div class="content-title">
+                        <h2 class="title">메뉴 안내 > 홈</h2>
+                        <p class="description">마이페이지에서 진행중인 사건을 눌러 이동한 홈 화면입니다. 나의 사건 진행현황과 상세내역 확인이 가능합니다.</p>
+                    </div>
+                    <div class="content-body">
+                        <div class="install-method vertical-layout">
+                            <div class="method-text">
+                                <h3 class="method-title"><span class="step-number">1</span>진행중인 사건 홈</h3>
+                                <p class="method-description">홈 화면에서는 진행중인 사무소, 현재 사건 단계, 나의 사건번호, 월 변제금, 총 변제금 등 확인 가능합니다.<br>
+                                우측 하단 전화 버튼을 눌러 해당 사무소의 후기작성과 전화연결을 할 수 있습니다.</p>
+                            </div>
+                            <div class="method-image">
+                                <img src="images/04-menu-guide/01-1-home-fab.png" alt="홈">
+                            </div>
+                        </div>
+
+                        <div class="install-method vertical-layout">
+                            <div class="method-text">
+                                <h3 class="method-title"><span class="step-number">2</span>사이드 메뉴</h3>
+                                <p class="method-description">좌측 상단 메뉴 버튼을 눌러 리포트부터 계약 진행, 신청서 확인 등 앱의 여러 기능을 이용할 수 있습니다.</p>
+                            </div>
+                            <div class="method-image">
+                                <img src="images/04-menu-guide/01-2-home-sidemenu.png" alt="사이드메뉴"">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- 메뉴 안내 - 상담결과 리포트 -->
+                <section class="content-section" data-section="report" style="display: none;">
+                    <div class="content-title">
+                        <h2 class="title">메뉴 안내 > 상담결과 리포트</h2>
+                        <p class="description">사무소에서 상담 받았던 내용을 확인하는 메뉴입니다. 담당자와 상담일자 등 확인 가능합니다.</p>
+                    </div>
+                    <div class="content-body">
+                        <div class="install-method vertical-layout">
+                            <div class="method-text">
+                                <h3 class="method-title"><span class="step-number">1</span>상담결과 리포트 내용 확인</h3>
+                                <p class="method-description">요약, 솔루션 탭을 이동하여 내용을 확인할 수 있습니다.<br>
+                                A : 리포트를 PDF 파일로 다운로드 받을 수 있습니다.</p>
+                            </div>
+                            <div class="method-image double-images">
+                                <img src="images/04-menu-guide/02-1-report.png" alt="상담결과 리포트">
+                                <img src="images/04-menu-guide/02-2-report.png" alt="상담결과 리포트">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- 메뉴 안내 - 계약서 -->
+                <section class="content-section" data-section="contract" style="display: none;">
+                    <div class="content-title">
+                        <h2 class="title">메뉴 안내 > 계약서</h2>
+                        <p class="description">사무소에서 작성한 계약서를 앱에서 확인하고 동의, 서명하여 계약을 체결할 수 있습니다.</p>
+                    </div>
+                    <div class="content-body">
+                        <div class="install-method vertical-layout">
+                            <div class="method-text">
+                                <h3 class="method-title"><span class="step-number">1</span>계약서 내용 확인</h3>
+                                <p class="method-description">사무소에서 작성한 계약서 내용을 확인한 후 확인하였다는 문구에 체크를 하여야 다음 절차로 넘어갈 수 있습니다.<br>
+                                위임인 정보, 수임료, 약관내용을 차례대로 확인하고 서명까지 진행합니다.</p>
+                            </div>
+                            <div class="method-image double-images">
+                                <img src="images/04-menu-guide/03-1-contract.png" alt="계약서확인">
+                                <img src="images/04-menu-guide/03-2-contract.png" alt="계약서확인">
+                            </div>
+                        </div>
+
+                        <div class="install-method vertical-layout">
+                            <div class="method-text">
+                                <h3 class="method-title"><span class="step-number">2</span>계약서 서명 동의</h3>
+                                <p class="method-description">계약서 내용에 문제가 없음을 모두 확인했다면 서명 탭에서 하단 ‘위임인 서명박스’를 터치하고 서명을 진행해주세요.</p>
+                            </div>
+                            <div class="method-image">
+                                <img src="images/04-menu-guide/03-3-contract.png" alt="계약서서명">
+                            </div>
+                        </div>
+
+                        <div class="install-method vertical-layout">
+                            <div class="method-text">
+                                <h3 class="method-title"><span class="step-number">3</span>계약체결 확정</h3>
+                                <p class="method-description">서명 완료 후 아래 체크박스에 체크하고 계약체결을 확정합니다.</p>
+                            </div>
+                            <div class="method-image">
+                                <img src="images/04-menu-guide/03-4-contract.png" alt="계약확정">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- 메뉴 안내 - 신청서류 -->
+                <section class="content-section" data-section="document" style="display: none;">
+                    <div class="content-title">
+                        <h2 class="title">메뉴 안내 > 신청서류</h2>
+                        <p class="description">사건진행에 필요한 서류를 확인할 수 있는 메뉴입니다. 총 발급해야 하는 서류 개수와 발급된 현황도 확인 가능합니다.</p>
+                    </div>
+                    <div class="content-body">
+                        <div class="install-method vertical-layout">
+                            <div class="method-text">
+                                <h3 class="method-title"><span class="step-number">1</span>신청서류 발급 리스트</h3>
+                                <p class="method-description">서류목록을 확인하고 각 서류마다 붙어있는 우측 물음표버튼을 누르면 발급을 어디서, 어떻게 받아야 하는지 알 수 있습니다. 발급이 완료된 서류는 서류명 우측에 체크 아이콘이 붙습니다.</p>
+                            </div>
+                            <div class="method-image">
+                                <img src="images/04-menu-guide/04-1-document.png" alt="신청서류리스트">
+                            </div>
+                        </div>
+
+                        <div class="install-method vertical-layout">
+                            <div class="method-text">
+                                <h3 class="method-title"><span class="step-number">2</span>진술서 작성</h3>
+                                <p class="method-description">신청서류 중 ‘진술서'를 앱에서 작성할 수 있습니다. ‘진술서 작성' 버튼을 누르고 기본사항, 경력사항, 거주사항, 진술서를 차례대로 작성합니다.<br>
+                                A : 탭을 터치하여 자유롭게 이동하며 작성 가능합니다.<br>
+                                B : 작성이 완료되면 하단 ‘진술서 저장' 버튼을 꼭 눌러주세요. 누르지 않으면 저장이 되지 않습니다.</p>
+                            </div>
+                            <div class="method-image">
+                                <img src="images/04-menu-guide/04-2-document.png" alt="진술서작성">
+                            </div>
+                        </div>
+
+                        <div class="install-method vertical-layout">
+                            <div class="method-text">
+                                <h3 class="method-title"><span class="step-number">3</span>진술서 작성중</h3>
+                                <p class="method-description">진술서 작성 중 ‘진술서 저장' 버튼을 누르지 않은 채 작성화면을 이탈하는 경우, ‘진술서 작성’ 버튼에 말풍선 모양이 보여집니다.<br>
+                                    이 경우 진술서가 저장이 되지 않은 상태이니 다시 진술서 작성 화면으로 들어가 이어서 작성을 완료 한 후 꼭 진술서 저장을 눌러주세요.</p>
+                            </div>
+                            <div class="method-image small-image-260">
+                                <img src="images/04-menu-guide/04-3-document.png" alt="진술서작성중">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- 메뉴 안내 - 부채증명서 -->
+                <section class="content-section" data-section="debt" style="display: none;">
+                    <div class="content-title">
+                        <h2 class="title">메뉴 안내 > 부채증명서</h2>
+                        <p class="description">발급해야 할 부채증명서 목록을 확인할 수 있는 메뉴입니다. 총 발급해야 하는 부채증명서 개수와 발급된 현황도 확인 가능합니다.</p>
+                    </div>
+                    <div class="content-body">
+                        <div class="install-method vertical-layout">
+                            <div class="method-text">
+                                <h3 class="method-title"><span class="step-number">1</span>부채증명서 리스트</h3>
+                                <p class="method-description">채권자목록이 맞는지 확인하고 발급 현황을 확인할 수 있습니다. 이자 3회 미납, 채권 매각, 채권 없음의 경우 각 채권자명 위에 색으로 표시됩니다. 발급이 완료된 부채증명서는 채권명 우측에 체크 아이콘이 붙습니다.</p>
+                            </div>
+                            <div class="method-image small-image-260">
+                                <img src="images/04-menu-guide/05-debt.png" alt="부채증명서">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- 메뉴 안내 - 신청서 -->
+                <section class="content-section" data-section="petition" style="display: none;">
+                    <div class="content-title">
+                        <h2 class="title">메뉴 안내 > 신청서</h2>
+                        <p class="description">사무소에서 작성한 신청서 내용을 확인할 수 있는 메뉴입니다.</p>
+                    </div>
+                    <div class="content-body">
+                        <div class="install-method vertical-layout">
+                            <div class="method-text">
+                                <h3 class="method-title"><span class="step-number">1</span>신청서 내용 확인</h3>
+                                <p class="method-description">작성된 신청서 내용을 확인한 후 확인하였다는 문구에 체크를 하여야 다음 절차로 넘어갈 수 있습니다. 채권자목록, 재산목록, 수입상황, 변제금 내용을 최종적으로 잘 확인합니다.</p>
+                            </div>
+                            <div class="method-image">
+                                <img src="images/04-menu-guide/06-1-petition.png" alt="신청서확인">
+                            </div>
+                        </div>
+
+                        <div class="install-method vertical-layout">
+                            <div class="method-text">
+                                <h3 class="method-title"><span class="step-number">2</span>신청서 제출 동의</h3>
+                                <p class="method-description">신청서 내용을 모두 확인하였으면 해당 내용대로 신청서를 제출하는데 최종적으로 동의합니다. 동의를 하면 사무소에서 법원에 신청서를 제줄합니다.</p>
+                            </div>
+                            <div class="method-image">
+                                <img src="images/04-menu-guide/06-2-petition.png" alt="신청서 제출 동의">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- 메뉴 안내 - 보정서 -->
+                <section class="content-section" data-section="supplement" style="display: none;">
+                    <div class="content-title">
+                        <h2 class="title">메뉴 안내 > 보정서</h2>
+                        <p class="description">법원에서 나온 보정권고에 따라 진행되는 보정현황을 확인할 수 있는 메뉴입니다. 보정서의 내용과 그 보정에 필요한 서류가 무엇인지 확인 가능합니다.</p>
+                    </div>
+                    <div class="content-body">
+                        <div class="install-method vertical-layout">
+                            <div class="method-text">
+                                <h3 class="method-title"><span class="step-number">1</span>보정서 내용 확인</h3>
+                                <p class="method-description">보정서 목록에서 확인할 보정서 항목을 선택하면 그 보정서에 해당되는 필요서류와 변동되는 채권자목록, 변제금을 확인할 수 있습니다.<br>
+                                작성된 보정서 내용을 확인한 후 확인하였다는 문구에 체크를 하여야 다음 절차로 넘어갈 수 있습니다.<br>
+                                A : 보정권고 종류, 송달일자, 제출기한, 제출여부를 확인합니다.<br>
+                                B : 보정에 필요한 서류목록을 확인하고 서류를 준비합니다. 우측 물음표를 누르면 발급매뉴얼을 확인할 수 있고, 발급이 완료된 서류는 서류명 우측에 체크 아이콘이 붙습니다.</p>
+                            </div>
+                            <div class="method-image">
+                                <img src="images/04-menu-guide/07-1-supplement.png" alt="보정서확인">
+                            </div>
+                        </div>
+
+                        <div class="install-method vertical-layout">
+                            <div class="method-text">
+                                <h3 class="method-title"><span class="step-number">2</span>보정서 제출 동의</h3>
+                                <p class="method-description">보정서 내용을 모두 확인하였으면 해당 내용대로 보정서를 제출하는데 최종적으로 동의합니다. 동의를 하면 사무소에서 법원에 보정서를 제줄합니다.</p>
+                            </div>
+                            <div class="method-image">
+                                <img src="images/04-menu-guide/07-2-supplement.png" alt="보정서 제출 동의">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- 메뉴 안내 - 사건진행현황 -->
+                <section class="content-section" data-section="progress" style="display: none;">
+                    <div class="content-title">
+                        <h2 class="title">메뉴 안내 > 사건진행현황</h2>
+                        <p class="description">별도의 나의 사건 검색없이 실시간으로 나의 사건 진행현황을 확인할 수 있는 메뉴입니다.</p>
+                    </div>
+                    <div class="content-body">
+                        <div class="install-method vertical-layout">
+                            <div class="method-text">
+                                <h3 class="method-title"><span class="step-number">1</span>나의 사건 진행현황</h3>
+                                <p class="method-description">현재 접수된 나의 사건의 기본정보, 진행내용을 확인합니다.<br>
+                                A : 여러 사건이 있는 경우 눌러서 사건번호 별로 확인 가능합니다.</p>
+                            </div>
+                            <div class="method-image small-image-260">
+                                <img src="images/04-menu-guide/08-progress.png" alt="사건진행현황">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- 메뉴 안내 - 수임료 -->
+                <section class="content-section" data-section="fee" style="display: none;">
+                    <div class="content-title">
+                        <h2 class="title">메뉴 안내 > 수임료</h2>
+                        <p class="description">나의 수임료의 내역을 확인할 수 있는 메뉴입니다.</p>
+                    </div>
+                    <div class="content-body">
+                        <div class="install-method vertical-layout">
+                            <div class="method-text">
+                                <h3 class="method-title"><span class="step-number">1</span>수임료 현황 확인</h3>
+                                <p class="method-description">나의 총 수임료, 지금까지 납부한 수임료 내역, 남은 수임료 금액 등 모두 확인 가능합니다. 앞으로 언제, 얼마의 수임료를 납부해야 하는지 자세히 알 수 있습니다.</p>
+                            </div>
+                            <div class="method-image small-image-260">
+                                <img src="images/04-menu-guide/09-fee.png" alt="수임료">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- 메뉴 안내 - 캘린더 -->
+                <section class="content-section" data-section="calendar" style="display: none;">
+                    <div class="content-title">
+                        <h2 class="title">메뉴 안내 > 캘린더</h2>
+                        <p class="description">나의 사건에 관한 일정을 확인할 수 있는 메뉴입니다.</p>
+                    </div>
+                    <div class="content-body">
+                        <div class="install-method vertical-layout">
+                            <div class="method-text">
+                                <h3 class="method-title"><span class="step-number">1</span>나의 사건 일정</h3>
+                                <p class="method-description">사건기일, 상담일정, 수임료 일정 등 나의 사건에 관한 모든 일정 확인이 가능합니다.</p>
+                            </div>
+                            <div class="method-image small-image-260">
+                                <img src="images/04-menu-guide/10-calendar.png" alt="캘린더">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- 메뉴 안내 - 사무소 정보 -->
+                <section class="content-section" data-section="office-info" style="display: none;">
+                    <div class="content-title">
+                        <h2 class="title">메뉴 안내 > 사무소 정보</h2>
+                        <p class="description">내가 사건을 진행하는 사무소의 정보를 확인할 수 있는 메뉴입니다.</p>
+                    </div>
+                    <div class="content-body">
+                        <div class="install-method vertical-layout">
+                            <div class="method-text">
+                                <h3 class="method-title"><span class="step-number">1</span>사무소 정보</h3>
+                                <p class="method-description">사무소의 전문분야, 운영시간, 주소, 번호 등 모두 확인 가능합니다. 사무소의 사건진행 후기를 남길 수 있습니다.</p>
+                            </div>
+                            <div class="method-image small-image-260">
+                                <img src="images/04-menu-guide/11-office-info.png" alt="사무소 정보">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Lucide 아이콘 초기화
+        lucide.createIcons();
+    </script>
+</body>
+</html>
+

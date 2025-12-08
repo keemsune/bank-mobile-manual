@@ -1,0 +1,888 @@
+/* ==========================================
+   리셋 & 기본 설정
+========================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', 
+                 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #121722; /* 모바일/태블릿 기본 배경 */
+}
+
+/* 사이드메뉴 열렸을 때 body 스크롤 방지 */
+body.menu-open {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+}
+
+/* 태블릿 라지 & 데스크탑 (769px 이상) - 배경색 변경 */
+@media (min-width: 769px) {
+    body {
+        background-color: #202838;
+    }
+}
+
+/* ==========================================
+   브레이크포인트 & 그리드 시스템 정의
+========================================== */
+
+/* 
+   모바일: 375px 이하
+   - 4단 그리드
+   - 양옆 마진: 16px
+   - 거터: 16px
+   
+   태블릿: 376px~768px
+   - 8단 그리드
+   - 양옆 마진: 24px
+   - 거터: 16px
+   
+   태블릿 라지: 769px~1024px
+   - 12단 그리드
+   - 양옆 마진: 32px
+   - 거터: 24px
+   
+   데스크탑: 1025px 이상
+   - 12단 그리드
+   - 양옆 마진: 40px
+   - 거터: 24px
+   - 컨테이너 max-width: 1400px
+*/
+
+/* ==========================================
+   컨테이너 & 레이아웃
+========================================== */
+
+/* 페이지 래퍼 */
+.page-wrapper {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding-top: 56px; /* 모바일/태블릿 - 고정된 헤더 높이만큼 여백 */
+    padding-bottom: 96px;
+}
+
+/* 데스크탑에서만 상단 여백 */
+@media (min-width: 769px) {
+    .page-wrapper {
+        padding-top: 96px;
+    }
+}
+
+/* 모바일 & 태블릿 (768px 이하) - 그리드 유지, 사이드바 없음 */
+.main-layout {
+    display: grid;
+    padding: 0 16px;
+    gap: 16px;
+    margin-top: 32px; /* 모바일/태블릿: 헤더와 컨텐츠 사이 간격 */
+}
+
+.main-layout {
+    grid-template-columns: repeat(4, 1fr); /* 모바일 4단 */
+}
+
+/* 태블릿 (376px ~ 768px) - 8단 그리드 */
+@media (min-width: 376px) and (max-width: 768px) {
+    .main-layout {
+        grid-template-columns: repeat(8, 1fr);
+        padding: 0 24px;
+        gap: 16px;
+    }
+}
+
+/* 태블릿 라지 (769px ~ 1024px) - 사이드바 140px + 12단 그리드 */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .main-layout {
+        display: grid;
+        grid-template-columns: 140px 1fr;
+        gap: 24px;
+        padding: 0 32px;
+        margin-top: 56px; /* 데스크탑: 헤더와 컨텐츠 사이 간격 */
+    }
+}
+
+/* 데스크탑 (1025px 이상) - 사이드바 200px + 12단 그리드 */
+@media (min-width: 1025px) {
+    .main-layout {
+        display: grid;
+        grid-template-columns: 200px 1fr;
+        gap: 24px;
+        padding: 0 40px;
+        margin-top: 56px; /* 데스크탑: 헤더와 컨텐츠 사이 간격 */
+    }
+}
+
+/* ==========================================
+   모바일 사이드 메뉴
+========================================== */
+
+/* 오버레이 */
+.mobile-menu-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.mobile-menu-overlay.active {
+    display: block;
+    opacity: 1;
+}
+
+/* 모바일 사이드바 */
+.mobile-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 80%; /* 화면 대비 비율 */
+    max-width: 269px; /* 모바일 최대 너비 */
+    height: 100%;
+    background-color: #121722;
+    z-index: 999;
+    transform: translateX(-100%); /* 숨김 상태 */
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 태블릿 */
+@media (min-width: 376px) and (max-width: 768px) {
+    .mobile-sidebar {
+        max-width: 560px; /* 태블릿 최대 너비 */
+    }
+}
+
+/* 데스크탑에서는 숨김 */
+@media (min-width: 769px) {
+    .mobile-sidebar,
+    .mobile-menu-overlay {
+        display: none !important;
+    }
+}
+
+.mobile-sidebar.active {
+    transform: translateX(0); /* 보이기 */
+}
+
+/* 사이드바 헤더 - 고정 */
+.mobile-sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 16px;
+    flex-shrink: 0;
+    background-color: #121722;
+}
+
+.mobile-sidebar-header .sidebar-logo {
+    height: 18px;
+    width: auto;
+}
+
+.mobile-sidebar-header h2 {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.close-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.close-button i,
+.close-button svg {
+    width: 24px !important;
+    height: 24px !important;
+    color: #fff;
+    stroke: #fff;
+}
+
+/* 모바일 메뉴 아이템 - 스크롤 영역 */
+.mobile-sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    overflow-y: auto;
+    padding: 0 16px 24px 16px;
+    flex: 1;
+}
+
+.mobile-menu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    color: #8B98AF;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+/* hover 효과 제거 (모바일은 터치 디바이스) */
+
+.mobile-menu-item.active {
+    background-color: #88A8ED;
+    color: #fff;
+    font-weight: 700;
+}
+
+.mobile-menu-item i,
+.mobile-menu-item svg {
+    width: 20px !important;
+    height: 20px !important;
+    stroke-width: 3;
+    opacity: 0.6;
+    flex-shrink: 0;
+}
+
+/* 모바일 하위메뉴 */
+.mobile-menu-item-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.mobile-submenu {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    padding-left: 12px;
+    margin-top: 4px;
+}
+
+.mobile-submenu.open {
+    display: flex;
+}
+
+.mobile-submenu-item {
+    display: block;
+    padding: 8px;
+    color: #8B98AF;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 400;
+    transition: all 0.2s ease;
+}
+
+/* hover 효과 제거 (모바일은 터치 디바이스) */
+
+.mobile-submenu-item.active {
+    background-color: #32405C;
+    color: #fff;
+    font-weight: 500;
+}
+
+/* ==========================================
+   헤더
+========================================== */
+
+/* 모바일/태블릿 헤더 (768px 이하만 표시) */
+.mobile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    padding: 16px;
+    background-color: #32405C;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 900;
+}
+
+.mobile-header h1 {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 16px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+}
+
+.menu-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.menu-button i,
+.menu-button svg {
+    width: 24px !important;
+    height: 24px !important;
+    color: #ffffff;
+    stroke: #ffffff;
+}
+
+.header-spacer {
+    width: 24px; /* 좌우 균형 맞추기 */
+}
+
+/* 데스크탑 헤더 (769px 이상만 표시) */
+.header {
+    color: white;
+    padding: 0 40px;
+    text-align: center;
+}
+
+/* 모바일 & 태블릿에서는 숨김 */
+@media (max-width: 768px) {
+    .header {
+        display: none;
+    }
+}
+
+/* 태블릿 라지 & 데스크탑에서는 모바일 헤더 숨김 */
+@media (min-width: 769px) {
+    .mobile-header {
+        display: none;
+    }
+}
+
+.header h1 {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+/* ==========================================
+   사이드바 (좌측 메뉴)
+========================================== */
+
+.sidebar {
+    background-color: #121722;
+    border-radius: 8px;
+    padding: 10px;
+    height: fit-content; /* hug - 콘텐츠에 맞춤 */
+}
+
+/* 모바일 & 태블릿에서는 숨김 */
+@media (max-width: 768px) {
+    .sidebar {
+        display: none;
+    }
+}
+
+.sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.menu-item {
+    display: flex;
+    justify-content: space-between; /* 텍스트-아이콘 양쪽 정렬 */
+    align-items: center;
+    padding: 10px 10px;
+    color: #8B98AF;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.menu-item i,
+.menu-item svg {
+    width: 20px !important;
+    height: 20px !important;
+    stroke-width: 3;
+    opacity: 0.8;
+    flex-shrink: 0;
+}
+
+.menu-item:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.menu-item.active {
+    background-color: #88A8ED;
+    color: #fff;
+    font-weight: 700;
+}
+
+/* 하위메뉴가 있는 메뉴 아이템 */
+.menu-item-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.menu-item.has-submenu {
+    cursor: pointer;
+}
+
+/* 아이콘은 JavaScript로 변경 (회전 제거) */
+
+/* 하위메뉴 */
+.submenu {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    padding-left: 12px;
+    margin-top: 4px;
+}
+
+.submenu.open {
+    display: flex;
+}
+
+.submenu-item {
+    display: block;
+    padding: 8px;
+    color: #8B98AF;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 400;
+    transition: all 0.2s ease;
+}
+
+.submenu-item:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.submenu-item.active {
+    background-color: #32405C;
+    color: #fff;
+    font-weight: 500;
+}
+
+/* ==========================================
+   컨텐츠 영역
+========================================== */
+
+/* 컨텐츠 래퍼 */
+.content-wrapper {
+    grid-column: 1 / -1; /* 모바일/태블릿에서 전체 너비 */
+}
+
+/* 모바일 & 태블릿 (768px 이하) - 박스 없음 */
+@media (max-width: 768px) {
+    .content-wrapper {
+        /* 박스 스타일 없음 */
+    }
+}
+
+/* 태블릿 라지 & 데스크탑 (769px 이상) - 박스 형태 */
+@media (min-width: 769px) {
+    .content-wrapper {
+        background-color: #121722;
+        border-radius: 8px;
+        padding: 40px;
+        grid-column: auto; /* 그리드 컬럼에서 자동 배치 */
+    }
+}
+
+.content-section {
+    display: flex;
+    flex-direction: column;
+}
+
+/* 타이틀 영역 */
+.content-title {
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* 타이틀과 설명 사이 간격 */
+    padding-bottom: 16px; /* 모바일/태블릿 기본값 */
+    border-bottom: 1px solid #7D8EAC;
+}
+
+/* 데스크탑 & 태블릿 라지 (769px 이상) */
+@media (min-width: 769px) {
+    .content-title {
+        padding-bottom: 24px;
+    }
+}
+
+.content-title .title {
+    font-size: 18px; /* 모바일/태블릿 기본값 */
+    font-weight: 700;
+    color: #F6A84A;
+    line-height: 1.4;
+    margin: 0; /* 기본 마진 제거 */
+}
+
+/* 데스크탑 & 태블릿 라지 (769px 이상) */
+@media (min-width: 769px) {
+    .content-title .title {
+        font-size: 24px;
+    }
+}
+
+.content-title .description {
+    font-size: 16px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+    margin: 0; /* 기본 마진 제거 */
+}
+
+/* 내용 영역 */
+.content-body {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.6;
+    margin-top: 40px; /* 모바일/태블릿 기본값 */
+    display: flex;
+    flex-direction: column;
+    gap: 60px; /* 방법 1, 방법 2 사이 간격 */
+}
+
+/* 데스크탑 & 태블릿 라지 (769px 이상) */
+@media (min-width: 769px) {
+    .content-body {
+        margin-top: 48px; /* 타이틀과 내용 사이 간격 */
+    }
+}
+
+/* 설치 방법 */
+.install-method {
+    display: flex;
+    flex-direction: column; /* 모바일/태블릿 기본값: 상하 배열 */
+    gap: 24px; /* 텍스트와 이미지 사이 간격 */
+}
+
+/* 데스크탑 & 태블릿 라지 (769px 이상) - 좌우 배열 */
+@media (min-width: 769px) {
+    .install-method {
+        flex-direction: row;
+        gap: 24px; /* 좌측(텍스트)과 우측(이미지) 간격 */
+    }
+}
+
+/* 시작하기 섹션 - 항상 상하 배열 */
+.install-method.vertical-layout {
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* 시작하기/이용하기 섹션 - border 제거 */
+.install-method.vertical-layout:not(:last-child) {
+    border-bottom: none;
+}
+
+/* 시작하기 섹션 - 텍스트 영역 전체 너비 */
+.install-method.vertical-layout .method-text {
+    width: 100%;
+}
+
+/* 시작하기 섹션 - 이미지 너비 */
+.install-method.vertical-layout .method-image img {
+    width: 648px;
+    max-width: 100%;
+    height: auto;
+}
+
+/* 작은 이미지 (280px) */
+.install-method.vertical-layout .method-image.small-image img {
+    width: 280px;
+    max-width: 100%;
+    height: auto;
+}
+
+/* 작은 이미지 (260px) */
+.install-method.vertical-layout .method-image.small-image-260 img {
+    width: 260px;
+    max-width: 100%;
+    height: auto;
+}
+
+/* 이미지 2개 (260px씩, 48px 간격) */
+.install-method.vertical-layout .method-image.double-images {
+    display: flex;
+    gap: 48px;
+    justify-content: center;
+    align-items: center;
+}
+
+.install-method.vertical-layout .method-image.double-images img {
+    width: 100%;
+    max-width: 260px;
+    height: auto;
+    flex-shrink: 1;
+    min-width: 0;
+}
+
+/* 태블릿 (376px ~ 768px) */
+@media (min-width: 376px) and (max-width: 768px) {
+    .install-method.vertical-layout .method-image img {
+        width: 100%;
+        max-width: 560px;
+    }
+    
+    .install-method.vertical-layout .method-image.small-image img {
+        width: 100%;
+        max-width: 240px;
+    }
+    
+    .install-method.vertical-layout .method-image.small-image-260 img {
+        width: 220px;
+        max-width: 100%;
+        height: auto;
+    }
+    
+    .install-method.vertical-layout .method-image.double-images {
+        gap: 32px;
+    }
+    
+    .install-method.vertical-layout .method-image.double-images img {
+        width: 100%;
+        max-width: 220px;
+        height: auto;
+    }
+}
+
+/* 모바일 (375px 이하) */
+@media (max-width: 375px) {
+    .install-method.vertical-layout .method-image img {
+        width: 100%;
+        max-width: 320px;
+    }
+    
+    .install-method.vertical-layout .method-image.small-image img {
+        width: 100%;
+        max-width: 200px;
+    }
+    
+    .install-method.vertical-layout .method-image.small-image-260 img {
+        width: 100%;
+        max-width: 160px;
+        height: auto;
+    }
+    
+    .install-method.vertical-layout .method-image.double-images {
+        gap: 16px;
+    }
+    
+    .install-method.vertical-layout .method-image.double-images img {
+        width: 100%;
+        max-width: 160px;
+        height: auto;
+    }
+}
+
+/* 방법1 하단 보더 (마지막 아이템 제외) */
+.install-method:not(:last-child) {
+    border-bottom: 1px solid #7D8EAC;
+}
+
+/* 좌측 텍스트 영역 */
+.method-text {
+    width: 100%; /* 모바일/태블릿 기본값: 전체 너비 */
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* 메소드와 설명 사이 간격 */
+}
+
+/* 데스크탑 & 태블릿 라지 (769px 이상) */
+@media (min-width: 769px) {
+    .method-text {
+        width: 272px;
+    }
+}
+
+/* 우측 이미지 영역 */
+.method-image,
+.method-images {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.method-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #88A8ED;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0;
+}
+
+.step-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    background-color: #88A8ED;
+    color: #ffffff;
+    border-radius: 50%;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.method-description {
+    font-size: 14px;
+    font-weight: 400;
+    color: #ffffff;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.method-image img,
+.method-images img {
+    width: 240px;
+    height: 400px;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+}
+
+/* 모바일 (375px 이하) - 이미지 크기 조정 */
+@media (max-width: 375px) {
+    .method-image img,
+    .method-images img {
+        width: 160px;
+        height: 267px; /* 비율 유지: 160/240 * 400 */
+    }
+}
+
+/* 태블릿 (376px ~ 768px) - 이미지 크기 조정 */
+@media (min-width: 376px) and (max-width: 768px) {
+    .method-image img,
+    .method-images img {
+        width: 220px;
+        height: 367px; /* 비율 유지: 220/240 * 400 */
+    }
+}
+
+.method-images {
+    display: flex;
+    gap: 48px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 태블릿 & 모바일 (768px 이하) - 이미지 간격 조정 */
+@media (max-width: 768px) {
+    .method-images {
+        gap: 16px;
+    }
+}
+
+/* 데스크탑에서만 하단 여백 */
+@media (min-width: 769px) {
+    .content-section {
+        margin-bottom: 0;
+    }
+}
+
+.content-section h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: #fff;
+}
+
+.content-section p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #ffffff;
+}
+
+/* ==========================================
+   반응형 (4단계)
+========================================== */
+
+/* 모바일 (375px 이하 - 기본 스타일) */
+/* 헤더는 숨김 처리됨 */
+
+.content-area {
+    padding: 24px;
+}
+
+.header h1 {
+    font-size: 20px;
+}
+
+.content-area {
+    padding: 24px;
+}
+
+/* 태블릿 (376px ~ 768px) */
+@media (min-width: 376px) and (max-width: 768px) {
+    /* 헤더는 숨김 처리됨 */
+    
+    .content-area {
+        padding: 32px;
+    }
+}
+
+/* 태블릿 라지 (769px ~ 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .header {
+        padding: 0 32px;
+        display: block; /* 다시 보이기 */
+    }
+    
+    .header h1 {
+        font-size: 28px;
+    }
+    
+    .sidebar {
+        width: 140px;
+    }
+}
+
+/* 데스크탑 (1025px 이상) */
+@media (min-width: 1025px) {
+    .header {
+        padding: 0 40px;
+        display: block; /* 다시 보이기 */
+    }
+    
+    .header h1 {
+        font-size: 30px;
+    }
+    
+    .sidebar {
+        width: 200px;
+    }
+}
+
+/* ==========================================
+   여기서부터 Figma 디자인에 맞춰 CSS 작업하세요
+========================================== */
+
